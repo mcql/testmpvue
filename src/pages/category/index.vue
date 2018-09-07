@@ -9,7 +9,7 @@
         <div class="typecont">当前分类id为:{{id}}</div>
       </div>
     </div>
-    <v-tabbar></v-tabbar>
+    <v-tabbar :selectNavIndex=selectNavIndex></v-tabbar>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ import vTabbar from "../../components/tabbar.vue";
 export default {
   data() {
     return {
+      selectNavIndex:1,
       id: 0
     };
   },
@@ -28,6 +29,9 @@ export default {
     vCatrgories,
     vSearch,
     vTabbar
+  },
+  onShow:function(){
+      wx.hideTabBar()
   },
   methods: {
     typeid(id) {

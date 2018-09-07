@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <v-search></v-search>
+    <div class="search">
+      <v-search></v-search>
+    </div>
     <div class="cont">
       <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
         <swiper-item v-for="item in banner" :key="item">
@@ -47,7 +49,9 @@
         </ul>
       </div>
     </div>
-    <v-tabbar></v-tabbar>
+    <div class="tabbar">
+      <v-tabbar :selectNavIndex=selectNavIndex></v-tabbar>
+    </div>
   </div>
 </template>
 
@@ -60,8 +64,17 @@ export default {
     vSearch,
     vTabbar
   },
+  onShow: function() {
+    wx.hideTabBar();
+  },
+  async onPullDownRefresh() {
+    // to doing..
+    // 停止下拉刷新
+    wx.stopPullDownRefresh();
+  },
   data() {
     return {
+      selectNavIndex: 0,
       cateprod: [
         {
           imgurl: "",
@@ -161,7 +174,11 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.search {
+  width: 100%;
+  height: 50px;
+}
+.container {
   background-color: #f0f0f0;
 }
 .cont {
@@ -254,5 +271,10 @@ export default {
 .nav ul li img {
   width: 60%;
   height: 40px;
+}
+.tabbar {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
 }
 </style>

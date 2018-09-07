@@ -1,44 +1,64 @@
 <template>
     <div class="tabbar">
-        <ul>
-            <navigator url="../home/main">
-                <li>首页</li>
-            </navigator>
-            <navigator url="../category/main">
-                <li>分类</li>
-            </navigator>
-            <navigator url="../home/main">
-                <li>购物车</li>
-            </navigator>
-            <navigator url="../home/main">
-                <li>我的</li>
-            </navigator>
+        <ul v-if="navList.length > 0">
+            <li v-for="(item , index) in navList" :key="item" :index="index" @click="selectNavItem(index , item.pagePath)">
+              <div>
+                <p :class="selectNavIndex === index ? 'item-text active' : 'item-text'">{{item.text}}</p>
+              </div>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props:["selectNavIndex"],
+  data() {
+    return {
+      navList: [
+        {
+          pagePath: "/pages/home/main",
+          text: "首页"
+        },
+        {
+          pagePath: "/pages/category/main",
+          text: "分类"
+        },{
+          pagePath: "/pages/my/main",
+          text: "我的"
+        }
+      ]
+    };
+  },
+  methods: {
+    selectNavItem: function(index, pagePath) {
+      if (index === this.selectNavIndex) {
+        return false;
+      }
+      this.bindViewTap(pagePath);
+    },
+    bindViewTap(url) {
+      wx.switchTab({
+        url
+      });
+    }
+  }
+};
 </script>
 
-<style scoped>
-.tabbar {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  border-top: 1px solid #fafafa;
-  text-align: center;
-  background: #fff;
+<style scpoed>
+.tabbar{
+  border-top: 1px solid #e3e3e3;
+  font-size: 14px;
 }
 .tabbar ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.tabbar navigator {
-  width: 25%;
-  font-size: 14px;
+.tabbar li {
+  line-height: 50px;
 }
 .active{
-    color: #fff;
+  color: red;
 }
 </style>
