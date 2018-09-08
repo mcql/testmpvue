@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/prodetail/main",
     "pages/my/main",
     "pages/category/main",
     "pages/home/main"
@@ -23,6 +24,9 @@
       },{
         "pagePath": "pages/my/main",
         "text": "我的"
+      },{
+        "pagePath": "pages/prodetail/main",
+        "text": "商品详情页"
       }
     ]
   }

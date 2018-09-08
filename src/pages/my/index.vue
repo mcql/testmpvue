@@ -31,24 +31,28 @@ export default {
         nickName: ""
       },
       show: false,
-      show1: true,
+      show1: true
     };
   },
   onShow: function() {
     wx.hideTabBar();
   },
-  methods:{
-    testbtn(){
+  methods: {
+    testbtn() {
       wx.setScreenBrightness({
-        value : 0
-      })
+        value: 0
+      });
+      console.log(wx.getSystemInfoSync());
+      wx.makePhoneCall({
+        phoneNumber: "18796545337"
+      });
       this.show = true;
       this.show1 = false;
     },
-    testbtn1(){
+    testbtn1() {
       wx.setScreenBrightness({
-        value : 1
-      })
+        value: 1
+      });
     }
   }
 };
@@ -79,6 +83,6 @@ export default {
   margin: 5px auto;
   background: linear-gradient(#ff9c00, #ffd48f);
   border-radius: 15px;
-  color:cornsilk;
+  color: cornsilk;
 }
 </style>
